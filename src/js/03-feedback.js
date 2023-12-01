@@ -20,14 +20,20 @@ form.addEventListener('input', saveInputForm);
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
-
-    localStorage.removeItem('feedback-form-state');
-    emailInput.value = '';
-    messageInput.value = '';
+    
+if (!emailInput.value || !messageInput.value) {
+        alert("All fields must be filled!");
+        return;
+    }
 
     const formData = {
         email: emailInput.value,
         message: messageInput.value,
     };
     console.log(formData);
+
+    localStorage.removeItem('feedback-form-state');
+    emailInput.value = '';
+    messageInput.value = '';
+
 });
